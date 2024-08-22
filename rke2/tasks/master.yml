@@ -1,0 +1,22 @@
+- name: Copy config file to master nodes
+  template:
+    src: configs/master/config.yml
+    dest: /etc/rancher/rke2/config.yaml
+  notify: Restart RKE2 server service
+  tags: rke2, config, master
+
+- name: Install RKE2 Server
+  shell: curl -sfL https://get.rke2.io | INSTALL_RKE2_VERSION={{ RKE2_VERSION }} sh -
+  args:
+    executable: /bin/bash
+    creates: /var/lib/rancher/rke2/bin/
+
+- name: Enable RKE2 server service
+  ansible.builtin.service:
+    name: rke2-server
+    enabled: yes
+
+- name: Start RKE2 server service
+  ansible.builtin.service:
+    name: rke2-server
+    state: started
