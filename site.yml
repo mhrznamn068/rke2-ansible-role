@@ -1,4 +1,4 @@
 ---
 - hosts: all
   roles:
-     - role: ../rke2
+     - role: ./rke2
