@@ -38,3 +38,4 @@ roles/*
 test.inv
 local.site.yml
 local.site.yaml
+.env

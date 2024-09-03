@@ -1,4 +1,14 @@
 ---
 - hosts: all
+  become: true
   roles:
-     - role: ./rke2
+    - role: mhrznamn068.rke2-ansible
+      vars:
+        RKE2_VERSION: "v1.30.2+rke2r1"
+        CLUSTER_NAME: "my-kubernetes-cluster"
+        ENV: "prod"
+        TOKEN: "your-shared-token"
+        MASTER1_IP: "10.100.10.0"
+        MASTER2_IP: "10.100.10.1"
+        MASTER3_IP: "10.100.10.2"
+        ROOT_DOMAIN: "example.com"
